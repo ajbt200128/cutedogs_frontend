@@ -1,0 +1,7 @@
+div.outer{
+
+  text-align: center;
+}
+div.inner{
+  display: inline-block;
+}

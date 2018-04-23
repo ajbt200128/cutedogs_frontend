@@ -1,0 +1,11 @@
+
+div.outer{
+  border: 5px solid black;
+  display: inline-block;
+  text-align: center;
+  padding: 3px;
+}
+img{
+  width: 260px;
+  max-height: 300px;
+}

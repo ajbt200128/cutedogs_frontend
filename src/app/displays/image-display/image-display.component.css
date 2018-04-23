@@ -1,0 +1,21 @@
+
+div.outer{
+  border: 5px solid black;
+  display: inline-block;
+  text-align: center;
+  padding: 3px;
+}
+img{
+  width: 260px;
+}
+span{
+  display: inline;
+}
+tags{
+  float: left;
+}
+.tag:hover{
+  cursor: pointer;
+  color: blue;
+}
+

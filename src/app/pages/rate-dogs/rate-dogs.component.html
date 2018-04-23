@@ -1,0 +1,17 @@
+<div class="outer">
+  <div *ngIf="dogs">
+    <h1 class="name" routerLink="/dog/{{dogs[currDog].uuid}}">{{dogs[currDog].name}}</h1>
+    <div class="outer">
+      <img [src]='dogs[currDog].images[currImg].imageLink'/>
+    </div>
+    <span *ngFor='let tag of dogs[currDog].images[currImg].tags' (click)="tagClick(tag)" class="tag">
+        {{tag}}
+    </span>
+    <div>Age: {{dogs[currDog].birthday|age}} | {{dogs[currDog].gender | genderPipe}} | {{dogs[currDog].breed}}</div>
+    <span (click)="like()" class="like"> &#1154;{{dogs[currDog].images|dogPoints}}</span><br>
+    <div class ="outer">
+    <button [disabled]="currDog==dogs.length-1" (click)="next()" mat-raised-button>Skip</button>
+  </div>
+
+  </div>
+</div>

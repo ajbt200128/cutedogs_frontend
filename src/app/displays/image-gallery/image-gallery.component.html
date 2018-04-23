@@ -1,0 +1,4 @@
+<div [ngStyle]="{'grid-template-columns':getWidth(),'display': 'grid','padding' :'20px','width':getDivWidth()}">
+  <app-image-display (delete)="delete($event)" (input)="checkImgs($event)" (liked)="imgLike()" *ngFor='let img of images' [img]='img' [edit]="edit"></app-image-display>
+  <button mat-mini-fab *ngIf="edit" (click)="addImg()" class="addButton"> +</button>
+</div>

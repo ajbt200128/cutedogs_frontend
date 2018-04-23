@@ -1,0 +1,5 @@
+<div class="outer">
+  <nav><a routerLink="/dog/{{dog.uuid}}">{{dog.name}}</a> <a *ngIf='edit' routerLink="/dog/{{dog.uuid}}/edit">edit</a></nav>
+  <img [src]='dog.profilePictureLink'/>
+  <div>Age: {{dog.birthday|age}} | &#1154; {{dog.images | dogPoints}} | {{dog.gender | genderPipe}} | {{dog.breed}}</div>
+</div>

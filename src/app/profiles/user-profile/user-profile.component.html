@@ -1,0 +1,15 @@
+<div>
+  <div *ngIf='user'>
+    <h1 *ngIf='loggedInUser'>My Dogs</h1>
+    <h1 *ngIf='!loggedInUser'>{{user.name}}</h1>
+    <h2>Dogs</h2>
+    <div class="innerGallery">
+      <app-dog-gallery [dogs]='user.dogs' [edit]='loggedInUser' [owner]="user.uuid"></app-dog-gallery>
+
+    </div>
+  </div>
+  <div *ngIf='!user'>
+    404 User not found
+  </div>
+</div>
+

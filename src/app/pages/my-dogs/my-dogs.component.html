@@ -1,0 +1,8 @@
+<div>
+  <div *ngIf='!loggedIn'>
+  Please <a routerLink='/login'>log in</a>
+</div>
+<div *ngIf='loggedIn'>
+  <app-user-profile [username]='user' ></app-user-profile>
+</div>
+</div>

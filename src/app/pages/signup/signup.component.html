@@ -1,0 +1,29 @@
+<div class="outer">
+    <br>
+    <br>
+    <br>
+    <div class="inner">
+  <form  (ngSubmit)="signUp()">
+    <mat-form-field>
+     <input matInput [(ngModel)]="name" type="text" placeholder="Enter your name" required name="name"  [formControl]="this.formGroup.controls['nameValidator']">
+     <mat-error>Name required</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+    <input matInput [(ngModel)]="username" type="text" placeholder="Enter a username" [formControl]="this.formGroup.controls['usernameValidator']" required name="username">
+    <mat-error *ngIf="this.formGroup.controls['usernameValidator']" >{{getUsernameError()}}</mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="password" type="password" placeholder="Enter a password" [formControl]="this.formGroup.controls['passwordValidator']" required name="password" >
+    <mat-error *ngIf="!this.formGroup.controls['passwordValidator'].valid">{{getPasswordError()}}</mat-error>
+  </mat-form-field><br>
+  <mat-form-field>
+      <input matInput [(ngModel)]="passwordVerify" type="password" placeholder="Verify your password"  required name="passwordVerification" [formControl]="this.formGroup.controls['passwordVerifyValidator']">
+      <mat-error *ngIf="!this.formGroup.controls['passwordVerifyValidator'].valid">Passwords do not match</mat-error>
+  </mat-form-field><br>
+
+  <button [disabled]='!checkPassword()||formGroup.invalid' mat-raised-button>Sign Up</button>
+  </form>
+  </div>
+  </div>

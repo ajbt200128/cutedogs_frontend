@@ -1,0 +1,37 @@
+div.outer{
+  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+
+  justify-content: center;
+  align-items: center;
+}
+div.imgHolder{
+  max-height: 30%;
+}
+div{
+  text-align: center
+}
+button{
+  display: inline-block;
+}
+img{
+  width:auto;
+
+  max-height: 60vh;
+
+  display: inline-block;
+}
+.name:hover{
+  color: blue;
+  cursor: pointer;
+}
+.like:hover{
+  color: cornflowerblue;
+  cursor: pointer;
+}
+.tag:hover{
+  cursor: pointer;
+  color: blue;
+}

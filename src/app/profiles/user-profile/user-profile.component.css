@@ -1,0 +1,9 @@
+h1{
+  text-align: center;
+}
+div{
+  display: inline-block;
+}
+.innerGallery{
+  display: -webkit-flex
+}
