@@ -1,6 +1,6 @@
 import { Dog } from './dog';
 import { UUID } from 'angular2-uuid';
-export interface Image{
+export interface Image {
   uuid: UUID;
   dog: UUID;
   tags: string[];

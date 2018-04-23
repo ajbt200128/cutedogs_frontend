@@ -7,23 +7,22 @@ import { MatDialog } from '@angular/material';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Cute Dogs';
-  loggedIn:boolean;
-  name:string = LoginHelper.getProfile().name;
-  constructor(public dialog:MatDialog){
-
+  loggedIn: boolean;
+  name: string = LoginHelper.getProfile().name;
+  constructor(public dialog: MatDialog) {
     LoginHelper.initialize();
-    LoginHelper.loggedIn.subscribe((loggedIn) => {
-      this.loggedIn = loggedIn
+    LoginHelper.loggedIn.subscribe(loggedIn => {
+      this.loggedIn = loggedIn;
       this.name = LoginHelper.getProfile().name;
     });
   }
-  ngOnInit(){
+  ngOnInit() {
     this.loggedIn = LoginHelper.isLoggedIn();
     this.name = LoginHelper.getProfile().name;
   }
-  logOut(){
+  logOut() {
     LoginHelper.logOut();
     window.location.reload();
   }

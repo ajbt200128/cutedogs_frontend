@@ -13,95 +13,125 @@ import { Image } from 'app/models/image';
 
 @Injectable()
 export class ApiHandlerService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getUser(uuid:UUID):Observable<DataResponse<User>>{
-
-    let path: string = Paths.URL+Paths.GET_USER.replace(':uuid' , uuid.toString());
-    console.log(path)
+  getUser(uuid: UUID): Observable<DataResponse<User>> {
+    let path: string =
+      Paths.URL + Paths.GET_USER.replace(':uuid', uuid.toString());
+    console.log(path);
     return this.http.get<DataResponse<User>>(path);
   }
-  getUserByUsername(username:string):Observable<DataResponse<User>>{
-    let path: string = Paths.URL+Paths.GET_BY_USERNAME.replace(':username',username);
+  getUserByUsername(username: string): Observable<DataResponse<User>> {
+    let path: string =
+      Paths.URL + Paths.GET_BY_USERNAME.replace(':username', username);
 
     return this.http.get<DataResponse<User>>(path);
   }
 
-  getDog(uuid: UUID):Observable<DataResponse<Dog>>{
-    return this.http.get<DataResponse<Dog>>(Paths.URL+Paths.GET_DOG.replace(':uuid', uuid.toString()));
+  getDog(uuid: UUID): Observable<DataResponse<Dog>> {
+    return this.http.get<DataResponse<Dog>>(
+      Paths.URL + Paths.GET_DOG.replace(':uuid', uuid.toString())
+    );
   }
-  getDogByOwner(uuid:UUID): Observable<DataResponse<Dog[]>>{
-    let path:string = Paths.URL+Paths.GET_DOGS_BY_OWNER.replace(':uuid', uuid.toString());
-    console.log(path)
+  getDogByOwner(uuid: UUID): Observable<DataResponse<Dog[]>> {
+    let path: string =
+      Paths.URL + Paths.GET_DOGS_BY_OWNER.replace(':uuid', uuid.toString());
+    console.log(path);
     return this.http.get<DataResponse<Dog[]>>(path);
-
   }
-  login(username:string,password:string):Observable<Response>{
+  login(username: string, password: string): Observable<Response> {
     let credentials = btoa(username + ':' + password);
     let eaders = new HttpHeaders({
-      'Authorization': 'Basic ' + credentials
+      Authorization: 'Basic ' + credentials
     });
 
-    return this.http.get<Response>(Paths.URL + Paths.LOGIN, {headers: eaders, withCredentials:true});
+    return this.http.get<Response>(Paths.URL + Paths.LOGIN, {
+      headers: eaders,
+      withCredentials: true
+    });
   }
-  signup(user:User,password:string):Observable<DataResponse<any>>{
+  signup(user: User, password: string): Observable<DataResponse<any>> {
     let credentials = btoa(user.username + ':' + password);
     let eaders = new HttpHeaders({
-      'Authorization': 'Basic ' + credentials
+      Authorization: 'Basic ' + credentials
     });
 
-    return this.http.post<DataResponse<any>>(Paths.URL + Paths.CREATE_USER,JSON.stringify(user) ,{headers: eaders, withCredentials:true});
+    return this.http.post<DataResponse<any>>(
+      Paths.URL + Paths.CREATE_USER,
+      JSON.stringify(user),
+      { headers: eaders, withCredentials: true }
+    );
   }
 
-  putDog(dog:Dog,ownerUsername:string):Observable<Response>{
-    let path = Paths.URL+Paths.UPDATE_DOG
+  putDog(dog: Dog, ownerUsername: string): Observable<Response> {
+    let path = Paths.URL + Paths.UPDATE_DOG;
     path = path.replace(':username', ownerUsername);
     path = path.replace(':uuid', dog.uuid.toString());
 
     let eaders = new HttpHeaders({
-      'Authorization': 'Bearer ' + LoginHelper.getToken()
-    });console.log(JSON.stringify(dog))
+      Authorization: 'Bearer ' + LoginHelper.getToken()
+    });
+    console.log(JSON.stringify(dog));
 
-    return this.http.put<Response>(path,JSON.stringify(dog),{headers :eaders,withCredentials:true});
+    return this.http.put<Response>(path, JSON.stringify(dog), {
+      headers: eaders,
+      withCredentials: true
+    });
   }
-  deleteDog(dog:UUID,ownerUsername:string):Observable<Response>{
-    let path = Paths.URL + Paths.DELETE_DOG
+  deleteDog(dog: UUID, ownerUsername: string): Observable<Response> {
+    let path = Paths.URL + Paths.DELETE_DOG;
     path = path.replace(':username', ownerUsername);
     path = path.replace(':uuid', dog.toString());
 
     let eaders = new HttpHeaders({
-      'Authorization': 'Bearer ' + LoginHelper.getToken()
-    });console.log(JSON.stringify(dog))
+      Authorization: 'Bearer ' + LoginHelper.getToken()
+    });
+    console.log(JSON.stringify(dog));
 
-    return this.http.delete<Response>(path,{headers :eaders,withCredentials:true});
+    return this.http.delete<Response>(path, {
+      headers: eaders,
+      withCredentials: true
+    });
   }
-  addDog(dog:Dog,ownerUsername:string):Observable<Response>{
+  addDog(dog: Dog, ownerUsername: string): Observable<Response> {
     let path = Paths.URL + Paths.CREATE_DOG;
     path = path.replace(':username', ownerUsername);
     path = path.replace(':uuid', dog.uuid.toString());
 
     let eaders = new HttpHeaders({
-      'Authorization': 'Bearer ' + LoginHelper.getToken()
-    });console.log(JSON.stringify(dog));
-
-    return this.http.post<Response>(path,JSON.stringify(dog),{headers :eaders,withCredentials:true});
-  }
-  likeImage(image:UUID,like:boolean):Observable<Response>{
-    let path = Paths.URL + Paths.LIKE_IMAGE.replace(":uuid",image.toString());
-    let eaders = new HttpHeaders({
-      'Authorization': 'Bearer ' + LoginHelper.getToken()
+      Authorization: 'Bearer ' + LoginHelper.getToken()
     });
-    console.log(image+" "+like);
-    return this.http.post<Response>(path, like ? 1 : 0,{headers :eaders,withCredentials:true});
+    console.log(JSON.stringify(dog));
+
+    return this.http.post<Response>(path, JSON.stringify(dog), {
+      headers: eaders,
+      withCredentials: true
+    });
   }
-  getAllDogs(count:number):Observable<DataResponse<Dog>>{
-    return this.http.get<DataResponse<Dog>>(Paths.URL + Paths.GET_DOGS + '?count=' + count);
+  likeImage(image: UUID, like: boolean): Observable<Response> {
+    let path = Paths.URL + Paths.LIKE_IMAGE.replace(':uuid', image.toString());
+    let eaders = new HttpHeaders({
+      Authorization: 'Bearer ' + LoginHelper.getToken()
+    });
+    console.log(image + ' ' + like);
+    return this.http.post<Response>(path, like ? 1 : 0, {
+      headers: eaders,
+      withCredentials: true
+    });
   }
-  getAllDogsByTag(count:number,tag: string):Observable<DataResponse<Dog>>{
-    return this.http.get<DataResponse<Dog>>(Paths.URL + Paths.GET_DOGS + '?count=' + count + '&tag=' + tag);
+  getAllDogs(count: number): Observable<DataResponse<Dog>> {
+    return this.http.get<DataResponse<Dog>>(
+      Paths.URL + Paths.GET_DOGS + '?count=' + count
+    );
   }
-  getDogsRandom(count:number){
-    return this.http.get<DataResponse<Dog>>(Paths.URL + Paths.GET_DOGS_RANDOM + '?count=' + count);
+  getAllDogsByTag(count: number, tag: string): Observable<DataResponse<Dog>> {
+    return this.http.get<DataResponse<Dog>>(
+      Paths.URL + Paths.GET_DOGS + '?count=' + count + '&tag=' + tag
+    );
+  }
+  getDogsRandom(count: number) {
+    return this.http.get<DataResponse<Dog>>(
+      Paths.URL + Paths.GET_DOGS_RANDOM + '?count=' + count
+    );
   }
 }

@@ -1,5 +1,5 @@
-export class DataResponse<T>{
+export class DataResponse<T> {
   data: T[];
-  status:string;
-  message:string;
+  status: string;
+  message: string;
 }

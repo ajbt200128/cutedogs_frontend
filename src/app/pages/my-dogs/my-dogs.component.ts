@@ -12,18 +12,17 @@ import { Router } from '@angular/router';
 export class MyDogsComponent implements OnInit {
   user: string;
   loggedIn: boolean;
-  constructor(private api:ApiHandlerService, private router:Router) {
-    LoginHelper.loggedIn.subscribe((loggedIn) => this.loginHandler(loggedIn));
+  constructor(private api: ApiHandlerService, private router: Router) {
+    LoginHelper.loggedIn.subscribe(loggedIn => this.loginHandler(loggedIn));
   }
-  loginHandler(loggedIn:boolean){
-    if (loggedIn){
+  loginHandler(loggedIn: boolean) {
+    if (loggedIn) {
       this.user = LoginHelper.getProfile().username;
-      console.log(this.user)
+      console.log(this.user);
     }
     this.loggedIn = loggedIn;
   }
   ngOnInit() {
     this.loginHandler(LoginHelper.isLoggedIn());
   }
-
 }

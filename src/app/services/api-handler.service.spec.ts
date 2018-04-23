@@ -10,7 +10,10 @@ describe('ApiHandlerService', () => {
     });
   });
 
-  it('should ...', inject([ApiHandlerService], (service: ApiHandlerService) => {
-    expect(service).toBeTruthy();
-  }));
+  it(
+    'should ...',
+    inject([ApiHandlerService], (service: ApiHandlerService) => {
+      expect(service).toBeTruthy();
+    })
+  );
 });

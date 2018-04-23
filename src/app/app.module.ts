@@ -4,8 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {RouterModule, Routes} from '@angular/router';
-import {MatButtonModule, MatCheckboxModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatButtonToggleModule, MatSlideToggleModule, MatChipsModule, MatIconModule, MatDialogModule} from '@angular/material';
+import { RouterModule, Routes } from '@angular/router';
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatButtonToggleModule,
+  MatSlideToggleModule,
+  MatChipsModule,
+  MatIconModule,
+  MatDialogModule
+} from '@angular/material';
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './profiles/user-profile/user-profile.component';
 import { DogDisplayComponent } from './displays/dog-display/dog-display.component';
@@ -18,7 +29,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { DogGalleryComponent } from './displays/dog-gallery/dog-gallery.component';
 import { ImageGalleryComponent } from './displays/image-gallery/image-gallery.component';
 import { MyDogsComponent } from './pages/my-dogs/my-dogs.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ImagePointsPipe } from './utils/image-points.pipe';
 import { DogPointsPipe } from './utils/dog-points.pipe';
 import { OtherDogsComponent } from './pages/other-dogs/other-dogs.component';
@@ -26,17 +37,18 @@ import { AddDogComponent } from './pages/add-dog/add-dog.component';
 import { SignupComponent } from './pages/signup/signup.component';
 
 const appRoutes: Routes = [
-  {path: 'user/:username', component: UserProfileComponent},
-  {path: 'ratedogs', component: RateDogsComponent},
-  {path: 'dog/:uuid', component: DogProfileComponent},
-  {path: 'dog/:uuid/:action', component: DogProfileComponent},
-  {path: 'login', component: LoginPageComponent},
-  {path: 'mydogs',component:MyDogsComponent},
-  {path: 'otherdogs',component:OtherDogsComponent},
-  {path: 'otherdogs/:tag',component:OtherDogsComponent},
-  {path : 'newdog/:owner',component:AddDogComponent},
-  {path : 'signup',component:SignupComponent}
-]
+  { path: 'user/:username', component: UserProfileComponent },
+  { path: 'ratedogs', component: RateDogsComponent },
+  { path: 'dog/:uuid', component: DogProfileComponent },
+  { path: 'dog/:uuid/:action', component: DogProfileComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'mydogs', component: MyDogsComponent },
+  { path: 'otherdogs', component: OtherDogsComponent },
+  { path: 'otherdogs/:tag', component: OtherDogsComponent },
+  { path: 'newdog/:owner', component: AddDogComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: '/', component: RateDogsComponent }
+];
 
 @NgModule({
   declarations: [
@@ -77,11 +89,10 @@ const appRoutes: Routes = [
     MatSlideToggleModule,
     MatChipsModule,
     MatIconModule,
-    MatDialogModule,
-
+    MatDialogModule
   ],
   providers: [ApiHandlerService],
   bootstrap: [AppComponent],
-  entryComponents:[LoginPopupComponent]
+  entryComponents: [LoginPopupComponent]
 })
-export class AppModule { }
+export class AppModule {}

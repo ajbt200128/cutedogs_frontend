@@ -6,12 +6,13 @@ describe('ImageGalleryComponent', () => {
   let component: ImageGalleryComponent;
   let fixture: ComponentFixture<ImageGalleryComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ImageGalleryComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [ImageGalleryComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ImageGalleryComponent);

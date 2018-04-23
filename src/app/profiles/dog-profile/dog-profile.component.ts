@@ -7,9 +7,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Input } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material';
-import {ENTER, COMMA} from '@angular/cdk/keycodes';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-dog-profile',
@@ -17,110 +16,124 @@ import { Router } from '@angular/router';
   styleUrls: ['./dog-profile.component.css']
 })
 export class DogProfileComponent implements OnInit {
-  @Input() dog:Dog;
-  @Input() new:boolean;
+  @Input() dog: Dog;
+  @Input() new: boolean;
   ownerUsername: string;
   @Input() edit: boolean;
   loggedInUser: boolean;
-  oldDog:Dog;
-  imgsValid:boolean = true;
+  oldDog: Dog;
+  imgsValid: boolean = true;
 
   separatorKeysCodes = [ENTER, COMMA];
 
-  constructor(private route: ActivatedRoute,private api:ApiHandlerService,private router:Router) {
-
-  }
+  constructor(
+    private route: ActivatedRoute,
+    private api: ApiHandlerService,
+    private router: Router
+  ) {}
   ngOnInit() {
-    if (this.route.snapshot.params['action']){
+    if (this.route.snapshot.params['action']) {
       this.edit = this.route.snapshot.params['action'] === 'edit';
     }
     if (this.route.snapshot.params['uuid'] && !this.new) {
-      this.api.getDog(this.route.snapshot.params['uuid']).subscribe((data) => {
+      this.api.getDog(this.route.snapshot.params['uuid']).subscribe(data => {
         this.dog = data.data[0];
         this.dog.birthday = new Date(this.dog.birthday);
-        this.oldDog = {...this.dog};
-        this.api.getUser(this.dog.owner).subscribe((owner) =>this.ownerUsername = owner.data[0].username);
-        LoginHelper.loggedIn.subscribe((loggedIn)=>this.loginHandler(loggedIn));
+        this.oldDog = { ...this.dog };
+        this.api
+          .getUser(this.dog.owner)
+          .subscribe(owner => (this.ownerUsername = owner.data[0].username));
+        LoginHelper.loggedIn.subscribe(loggedIn => this.loginHandler(loggedIn));
         this.loginHandler(LoginHelper.isLoggedIn());
       });
-    }else{
-      this.oldDog ={...this.dog};
-      this.api.getUser(this.dog.owner).subscribe((owner) => this.ownerUsername = owner.data[0].username);
+    } else {
+      this.oldDog = { ...this.dog };
+      this.api
+        .getUser(this.dog.owner)
+        .subscribe(owner => (this.ownerUsername = owner.data[0].username));
     }
-
   }
-  updateImgs(){
-    if(!this.new){
-      this.api.getDog(this.route.snapshot.params['uuid']).subscribe((data) => {
+  updateImgs() {
+    if (!this.new) {
+      this.api.getDog(this.route.snapshot.params['uuid']).subscribe(data => {
         this.dog = data.data[0];
         this.dog.birthday = new Date(this.dog.birthday);
-        this.oldDog = {...this.dog};
-        this.api.getUser(this.dog.owner).subscribe((owner) =>this.ownerUsername = owner.data[0].username);
-        LoginHelper.loggedIn.subscribe((loggedIn)=>this.loginHandler(loggedIn));
+        this.oldDog = { ...this.dog };
+        this.api
+          .getUser(this.dog.owner)
+          .subscribe(owner => (this.ownerUsername = owner.data[0].username));
+        LoginHelper.loggedIn.subscribe(loggedIn => this.loginHandler(loggedIn));
         this.loginHandler(LoginHelper.isLoggedIn());
       });
     }
   }
-  checkImgs(valid:boolean){
+  checkImgs(valid: boolean) {
     this.imgsValid = valid && this.dog.images != null;
   }
 
   loginHandler(loggedIn: boolean) {
-      this.loggedInUser = loggedIn ? LoginHelper.getProfile().uuid.toString() === this.dog.owner.toString():false;
+    this.loggedInUser = loggedIn
+      ? LoginHelper.getProfile().uuid.toString() === this.dog.owner.toString()
+      : false;
   }
 
-
-  editMode(){
+  editMode() {
     console.log(JSON.stringify(this.dog.images));
     this.edit = true;
 
-    this.oldDog = {... this.dog};
+    this.oldDog = { ...this.dog };
   }
-  save(){
-
-    if (!this.new){
-      this.api.putDog(this.dog,this.ownerUsername)
-      .subscribe(res=>console.log(JSON.stringify(res)),error=>console.log(JSON.stringify(error)));
+  save() {
+    if (!this.new) {
+      this.api
+        .putDog(this.dog, this.ownerUsername)
+        .subscribe(
+          res => console.log(JSON.stringify(res)),
+          error => console.log(JSON.stringify(error))
+        );
       this.edit = false;
 
-    this.oldDog = {... this.dog};
-    }else{
-      this.api.addDog(this.dog,this.ownerUsername)
-      .subscribe(res=>{console.log(JSON.stringify(res))
-      },error=>console.log(JSON.stringify(error)));
+      this.oldDog = { ...this.dog };
+    } else {
+      this.api.addDog(this.dog, this.ownerUsername).subscribe(
+        res => {
+          console.log(JSON.stringify(res));
+        },
+        error => console.log(JSON.stringify(error))
+      );
       this.router.navigate(['dog/' + this.dog.uuid]);
     }
-
   }
 
-  cancel(){
-    this.dog = {...this.oldDog};
-    this.oldDog = {...this.dog};
+  cancel() {
+    this.dog = { ...this.oldDog };
+    this.oldDog = { ...this.dog };
     this.edit = false;
-    if (this.new){
+    if (this.new) {
       window.history.back();
     }
   }
 
-  delete(){
-    this.api.deleteDog(this.dog.uuid,this.ownerUsername)
-      .subscribe(res=>this.router.navigate(['/mydogs']),error=>console.log(JSON.stringify(error)));
-
+  delete() {
+    this.api
+      .deleteDog(this.dog.uuid, this.ownerUsername)
+      .subscribe(
+        res => this.router.navigate(['/mydogs']),
+        error => console.log(JSON.stringify(error))
+      );
   }
 
-
-  addChip(event: MatChipInputEvent,likes:boolean): void {
+  addChip(event: MatChipInputEvent, likes: boolean): void {
     let input = event.input;
     let value = event.value;
 
     // Add our fruit
     if ((value || '').trim()) {
-      if (likes){
+      if (likes) {
         this.dog.dogLikes.push(value.trim());
-      }else{
+      } else {
         this.dog.dogDislikes.push(value.trim());
       }
-
     }
 
     // Reset the input value
@@ -129,16 +142,17 @@ export class DogProfileComponent implements OnInit {
     }
   }
 
-  removeChip(item: any,likes:boolean): void {
+  removeChip(item: any, likes: boolean): void {
     var index;
-    index = likes? this.dog.dogLikes.indexOf(item):this.dog.dogDislikes.indexOf(item);
+    index = likes
+      ? this.dog.dogLikes.indexOf(item)
+      : this.dog.dogDislikes.indexOf(item);
     if (index >= 0) {
-      if (likes){
+      if (likes) {
         this.dog.dogLikes.splice(index, 1);
-      }else{
+      } else {
         this.dog.dogDislikes.splice(index, 1);
       }
-
     }
   }
 }

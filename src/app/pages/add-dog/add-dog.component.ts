@@ -13,19 +13,16 @@ import { Router } from '@angular/router/';
 export class AddDogComponent implements OnInit {
   owner: UUID;
   dog: Dog;
-  constructor(private route: ActivatedRoute,public router: Router) {
-
-   }
+  constructor(private route: ActivatedRoute, public router: Router) {}
 
   ngOnInit() {
     this.dog = new Dog();
-    if (this.route.snapshot.params['owner']){
+    if (this.route.snapshot.params['owner']) {
       this.owner = this.route.snapshot.params['owner'];
-      if (LoginHelper.getProfile().uuid !== this.owner){
+      if (LoginHelper.getProfile().uuid !== this.owner) {
         this.router.navigate(['']);
       }
       this.dog.owner = this.owner;
     }
   }
-
 }

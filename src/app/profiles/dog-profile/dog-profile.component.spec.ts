@@ -9,12 +9,13 @@ describe('DogProfileComponent', () => {
   let component: DogProfileComponent;
   let fixture: ComponentFixture<DogProfileComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DogProfileComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [DogProfileComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DogProfileComponent);

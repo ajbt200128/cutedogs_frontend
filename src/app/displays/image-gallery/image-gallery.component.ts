@@ -11,55 +11,65 @@ import { Dog } from 'app/models/dog';
 })
 export class ImageGalleryComponent implements OnInit {
   @Input() images: Image[];
-  @Input() edit:boolean;
-  @Output() valid:EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Input() dog:Dog;
-  @Output() imgLiked:EventEmitter<any> = new EventEmitter<any>();
-  constructor() { }
+  @Input() edit: boolean;
+  @Output() valid: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() dog: Dog;
+  @Output() imgLiked: EventEmitter<any> = new EventEmitter<any>();
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  imgLike(){
+  imgLike() {
     this.imgLiked.emit();
   }
 
-  delete(uuid:UUID){
-    this.images.forEach((element,index) => {
-      if (element.uuid === uuid){
-        this.images.splice(index,1);
+  delete(uuid: UUID) {
+    this.images.forEach((element, index) => {
+      if (element.uuid === uuid) {
+        this.images.splice(index, 1);
       }
     });
     this.checkImgs(true);
   }
 
-  checkImgs(isValid:boolean){
-    let valid: boolean = true;
+  checkImgs(isValid: boolean) {
+    let valid = true;
     this.images.forEach(element => {
-      if (!element.imageLink){
+      if (!element.imageLink) {
         valid = false;
       }
     });
-    if (!isValid){
+    if (!isValid) {
       valid = false;
     }
     this.valid.emit(valid);
   }
 
-  addImg(){
-    let imgUUID: UUID =UUID.UUID();
-    console.log(this.dog.uuid+"aaaaaaaaa");
-    let img:Image = {uuid:imgUUID, dog:this.dog.uuid,tags:[],likedBy:[],imageLink:''};
+  addImg() {
+    const imgUUID: UUID = UUID.UUID();
+    const img: Image = {
+      uuid: imgUUID,
+      dog: this.dog.uuid,
+      tags: [],
+      likedBy: [],
+      imageLink: ''
+    };
     this.images.push(img);
     this.checkImgs(false);
   }
   getDivWidth(): string {
-    return (360 * Math.min(this.images.length+1, Math.floor(window.innerWidth / 300))) + 'px';
+    return (
+      360 *
+        Math.min(this.images.length + 1, Math.floor(window.innerWidth / 300)) +
+      'px'
+    );
   }
 
-  getWidth(): string{
-    const width = Math.min(this.images.length+1, Math.floor(window.innerWidth / 300))
-
+  getWidth(): string {
+    const width = Math.min(
+      this.images.length + 1,
+      Math.floor(window.innerWidth / 300)
+    );
 
     return 'repeat( ' + width + ', ' + width + 'fr)';
   }

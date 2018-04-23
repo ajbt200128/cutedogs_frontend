@@ -6,12 +6,13 @@ describe('DogGalleryComponent', () => {
   let component: DogGalleryComponent;
   let fixture: ComponentFixture<DogGalleryComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DogGalleryComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [DogGalleryComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DogGalleryComponent);

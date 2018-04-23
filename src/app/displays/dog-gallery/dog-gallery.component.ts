@@ -10,22 +10,27 @@ import { Input } from '@angular/core';
   styleUrls: ['./dog-gallery.component.css']
 })
 export class DogGalleryComponent implements OnInit {
-  @Input() dogs:Dog[];
-  @Input() edit:boolean;
-  @Input() owner:UUID;
-  constructor(public router: Router) { }
+  @Input() dogs: Dog[];
+  @Input() edit: boolean;
+  @Input() owner: UUID;
+  constructor(public router: Router) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   getDivWidth(): string {
-    return (360 * Math.min(this.dogs.length, Math.floor(window.innerWidth / 300))) + 'px';
+    return (
+      360 * Math.min(this.dogs.length, Math.floor(window.innerWidth / 300)) +
+      'px'
+    );
   }
   addDog() {
     this.router.navigate(['newdog/' + this.owner]);
   }
 
   getWidth(): string {
-    const numWidth = Math.min(this.dogs.length+1, Math.floor(window.innerWidth / 300));
+    const numWidth = Math.min(
+      this.dogs.length + 1,
+      Math.floor(window.innerWidth / 300)
+    );
     return 'repeat( ' + numWidth + ', ' + numWidth + 'fr)';
   }
 }

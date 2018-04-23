@@ -14,26 +14,27 @@ export class LoginPageComponent implements OnInit {
   username: string;
   password: string;
   valid: boolean = true;
-  remember:boolean;
-  constructor(private router: Router,private route:ActivatedRoute, private api:ApiHandlerService) {
-   }
+  remember: boolean;
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private api: ApiHandlerService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  logIn(){
-    if (this.username && this.password){
+  logIn() {
+    if (this.username && this.password) {
       let token;
-      this.api.login(this.username,this.password).subscribe((res)=>{
+      this.api.login(this.username, this.password).subscribe(
+        res => {
           LoginHelper.login(res.toString(), this.remember);
           window.history.back();
-
-      },
-      (err:HttpErrorResponse)=>{
-        this.valid = !(err.status === 401);
-      });
+        },
+        (err: HttpErrorResponse) => {
+          this.valid = !(err.status === 401);
+        }
+      );
     }
-
-
   }
 }

@@ -1,9 +1,8 @@
-import { User } from "./user";
-import { Image } from "./image";
-import { UUID } from "angular2-uuid";
+import { User } from './user';
+import { Image } from './image';
+import { UUID } from 'angular2-uuid';
 
-export class Dog{
-
+export class Dog {
   profilePictureLink: string;
   owner: UUID;
   name: UUID;
@@ -15,12 +14,12 @@ export class Dog{
   biography: string;
   images: Image[];
   uuid: UUID;
-  constructor(){
+  constructor() {
     this.uuid = UUID.UUID();
     this.dogLikes = [];
     this.dogDislikes = [];
     this.images = [];
-    this.name = "";
+    this.name = '';
     this.gender = 1;
   }
-  }
+}

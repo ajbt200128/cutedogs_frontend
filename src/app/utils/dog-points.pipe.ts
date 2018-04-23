@@ -6,13 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'dogPoints'
 })
 export class DogPointsPipe implements PipeTransform {
-
   transform(value: Image[], args?: any): any {
-    let points:number = 0;
+    let points: number = 0;
     value.forEach(element => {
-      points+= element.likedBy.length;
+      points += element.likedBy.length;
     });
     return points;
   }
-
 }

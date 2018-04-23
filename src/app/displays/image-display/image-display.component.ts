@@ -10,7 +10,6 @@ import { Image } from 'app/models/image';
 import { Key } from 'readline';
 import { MatDialog } from '@angular/material';
 
-
 @Component({
   selector: 'app-image-display',
   templateUrl: './image-display.component.html',
@@ -22,36 +21,41 @@ export class ImageDisplayComponent implements OnInit {
   @Output() input: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() delete: EventEmitter<UUID> = new EventEmitter<UUID>();
   @Output() liked: EventEmitter<any> = new EventEmitter<any>();
-  ask:boolean=false;
-  constructor(public api: ApiHandlerService,public dialog: MatDialog,public router:Router) { }
+  ask: boolean = false;
+  constructor(
+    public api: ApiHandlerService,
+    public dialog: MatDialog,
+    public router: Router
+  ) {}
 
-  keyPress(valid:boolean){
+  keyPress(valid: boolean) {
     this.input.emit(valid);
   }
-  prompt(){
+  prompt() {
     this.ask = true;
   }
-  deleteImg(del:boolean){
-    if (!del){
+  deleteImg(del: boolean) {
+    if (!del) {
       this.ask = false;
-    }else{
+    } else {
       this.delete.emit(this.img.uuid);
     }
   }
-  like(){
-    if (LoginHelper.isLoggedIn()){
-        this.api.likeImage(this.img.uuid, this.img.likedBy.indexOf(LoginHelper.getProfile().uuid) <= -1)
-          .subscribe(res => this.liked.emit());
-    }else{
+  like() {
+    if (LoginHelper.isLoggedIn()) {
+      this.api
+        .likeImage(
+          this.img.uuid,
+          this.img.likedBy.indexOf(LoginHelper.getProfile().uuid) <= -1
+        )
+        .subscribe(res => this.liked.emit());
+    } else {
       let dialog = this.dialog.open(LoginPopupComponent);
-      dialog.afterOpen().subscribe(()=>console.log("open"))
+      dialog.afterOpen().subscribe(() => console.log('open'));
     }
   }
-  tagClick(tag:string){
-    this.router.navigate(['otherdogs/'+tag]);
+  tagClick(tag: string) {
+    this.router.navigate(['otherdogs/' + tag]);
   }
-  ngOnInit() {
-
-  }
-
+  ngOnInit() {}
 }

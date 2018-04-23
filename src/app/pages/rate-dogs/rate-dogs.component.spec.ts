@@ -9,12 +9,13 @@ describe('RateDogsComponent', () => {
   let component: RateDogsComponent;
   let fixture: ComponentFixture<RateDogsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ RateDogsComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        declarations: [RateDogsComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RateDogsComponent);
