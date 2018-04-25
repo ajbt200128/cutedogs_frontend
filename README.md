@@ -1,2 +1,2 @@
-# Cutedogs
+# Cutedogs frontend
 Angular front end
