@@ -3,5 +3,16 @@ div.outer{
   text-align: center;
 }
 div.inner{
+  text-align: center;
   display: inline-block;
+  
+}
+a{
+  text-decoration: none;
+
+  color: #5E2606;
+}
+a:hover{
+  text-decoration: underline;
+  cursor: pointer;
 }

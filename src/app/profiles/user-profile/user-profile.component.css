@@ -5,5 +5,7 @@ div{
   display: inline-block;
 }
 .innerGallery{
-  display: -webkit-flex
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }

@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { Image } from 'app/models/image';
 import { Key } from 'readline';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatChipInputEvent } from '@angular/material';
+import { ENTER, COMMA, TAB } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'app-image-display',
@@ -22,6 +23,7 @@ export class ImageDisplayComponent implements OnInit {
   @Output() delete: EventEmitter<UUID> = new EventEmitter<UUID>();
   @Output() liked: EventEmitter<any> = new EventEmitter<any>();
   ask: boolean = false;
+  separatorKeysCodes = [ENTER, COMMA, TAB];
   constructor(
     public api: ApiHandlerService,
     public dialog: MatDialog,
@@ -56,6 +58,23 @@ export class ImageDisplayComponent implements OnInit {
   }
   tagClick(tag: string) {
     this.router.navigate(['otherdogs/' + tag]);
+  }
+  addTag(event: MatChipInputEvent) {
+    const input = event.input;
+    const value = event.value;
+    if ((value || '').trim()) {
+      this.img.tags.push(value.trim());
+    }
+    if (input) {
+      input.value = '';
+    }
+  }
+  removeTag(tag: string) {
+    var index;
+    index = this.img.tags.indexOf(tag);
+    if (index >= 0) {
+      this.img.tags.splice(index, 1);
+    }
   }
   ngOnInit() {}
 }

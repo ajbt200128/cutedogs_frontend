@@ -3,7 +3,8 @@ app-dog-display{
   justify-self: center;
 }
 .addButton{
-  margin-top: 150px;
-  
+  justify-content: center;
+  display: flex;
+  margin-top: 20%;
 }
 

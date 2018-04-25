@@ -1,3 +1,5 @@
 .addButton{
-  transform: translate(0%, 250%);
+  justify-content: center;
+  display: flex;
+  margin-top: 40%;
 }

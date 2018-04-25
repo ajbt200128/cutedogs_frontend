@@ -1,13 +1,22 @@
-<div style="text-align: right"></div>
-<div *ngIf="!loggedIn" style="text-align: right"><a  routerLink="/login" >Log in</a></div>
-<div *ngIf="loggedIn" style="text-align: right">Hello, {{name}} <a routerLink="/ratedogs" (click)="logOut()">Log out</a></div>
+<div class="outernavbar">
+  <div class="navbar">
+    <div *ngIf="!loggedIn" style="text-align: right">
+      <a routerLink="/login">Log in</a>
+      or
+      <a routerLink="/signup">Sign up</a>
+    </div>
+    <div *ngIf="loggedIn" style="text-align: right">Hello, {{name}}
+      <a routerLink="/ratedogs" (click)="logOut()">Log out</a>
+    </div>
+  </div>
+</div>
 <h1>
   {{title}}
 </h1>
 <nav>
-  <a *ngIf="!loggedIn" routerLink="/login">My Dogs</a>
-  <a *ngIf="loggedIn" routerLink="/mydogs">My Dogs</a>
-  <a routerLink="/ratedogs">Rate Dogs</a>
-  <a routerLink="/otherdogs">Other Dogs</a>
+  <a *ngIf="!loggedIn" routerLink="/login" [ngClass]="{'selected':activatedRoute==='login'}" (click)="routeSelect('login')">My Dogs</a>
+  <a *ngIf="loggedIn" routerLink="/mydogs" [ngClass]="{'selected':activatedRoute==='mydogs'}" (click)="routeSelect('mydogs')">My Dogs</a>
+  <a routerLink="/ratedogs" [ngClass]="{'selected':activatedRoute==='ratedogs'}" (click)="routeSelect('ratedogs')">Rate Dogs</a>
+  <a routerLink="/otherdogs" [ngClass]="{'selected':activatedRoute==='otherdogs'}" (click)="routeSelect('otherdogs')">Other Dogs</a>
 </nav>
 <router-outlet></router-outlet>

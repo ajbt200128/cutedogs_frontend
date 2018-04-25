@@ -1,14 +1,18 @@
-div.outer{
-  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
-  display: -ms-flexbox;  /* TWEENER - IE 10 */
-  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
-  display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+* {
+  color: #5E2606;
 
+}
+h1{
+  margin-top: 3px;
+  margin-bottom: 3px;
+
+}
+
+div.imgHolder{
   justify-content: center;
   align-items: center;
-}
-div.imgHolder{
-  max-height: 30%;
+  display: flex;
+  width: auto;
 }
 div{
   text-align: center
@@ -18,13 +22,15 @@ button{
 }
 img{
   width:auto;
-
+  height: auto;
   max-height: 60vh;
-
+  max-width: 100%;
+  box-shadow: 0 0 5px black;
+  margin: 10px;
   display: inline-block;
 }
 .name:hover{
-  color: blue;
+  text-decoration: underline;
   cursor: pointer;
 }
 .like:hover{
@@ -33,5 +39,39 @@ img{
 }
 .tag:hover{
   cursor: pointer;
-  color: blue;
+  color: cornflowerblue;
+}
+.likebar{
+  display: flex;
+
+  align-items: center;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+.likebar>button{
+  margin-left: auto;
+  font-size: 1.2em;
+  padding: 7px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.likebar>span{
+  background-color: #63ADF2;
+  padding: 10px;
+  border-radius: 40%;
+  box-shadow: 1px 1px 4px black;
+}
+.likebar>span:hover{
+  background-color: #304D6D;
+  padding: 10px;
+  border-radius: 40%;
+}
+.likebar>div.spacer{
+  margin-right: 45%;
+}
+.info{
+  background-color: #63ADF2;
+  border-radius: 10px;
+  width: auto;
+  font-size: 1.2em;
 }

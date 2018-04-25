@@ -1,4 +1,46 @@
-img.profileImg{
+.inner {
+  max-width: 80%;
+}
+.actions {
+  display: flex;
+  justify-content: flex-start;
+}
+.last {
+  margin-left: auto;
+}
+
+a {
+  text-decoration: none;
+
+  color: #402f1f;
+}
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+h1 {
+  margin: 3px;
+}
+h2 {
+  margin: 3px;
+}
+h3 {
+  margin: 3px;
+}
+.inputfield {
+  width: 80% !important;
+}
+img.profileImg {
   height: 300px;
   width: auto;
+}
+#delete {
+  background-color: red;
+  color: white;
+}
+@media screen and (max-width: 420px) {
+  img.profileImg {
+    height: auto;
+    width: 100%;
+  }
 }

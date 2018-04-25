@@ -35,9 +35,10 @@ import { DogPointsPipe } from './utils/dog-points.pipe';
 import { OtherDogsComponent } from './pages/other-dogs/other-dogs.component';
 import { AddDogComponent } from './pages/add-dog/add-dog.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { UserPageComponent } from './pages/user-page/user-page.component';
 
 const appRoutes: Routes = [
-  { path: 'user/:username', component: UserProfileComponent },
+  { path: 'user/:username', component: UserPageComponent },
   { path: 'ratedogs', component: RateDogsComponent },
   { path: 'dog/:uuid', component: DogProfileComponent },
   { path: 'dog/:uuid/:action', component: DogProfileComponent },
@@ -47,7 +48,7 @@ const appRoutes: Routes = [
   { path: 'otherdogs/:tag', component: OtherDogsComponent },
   { path: 'newdog/:owner', component: AddDogComponent },
   { path: 'signup', component: SignupComponent },
-  { path: '/', component: RateDogsComponent }
+  { path: '', component: RateDogsComponent }
 ];
 
 @NgModule({
@@ -69,7 +70,8 @@ const appRoutes: Routes = [
     LoginPopupComponent,
     OtherDogsComponent,
     AddDogComponent,
-    SignupComponent
+    SignupComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,

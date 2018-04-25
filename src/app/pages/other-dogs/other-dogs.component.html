@@ -1,5 +1,7 @@
-<div>
-  <br>
-  <br>
-  <app-dog-gallery #dogGallery [dogs]='dogs'></app-dog-gallery>
+<div class="outer">
+  <div class="inner">
+    <br>
+    <br>
+    <app-dog-gallery *ngIf='dogs' #dogGallery [dogs]='dogs'></app-dog-gallery>
+  </div>
 </div>

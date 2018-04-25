@@ -1,10 +1,51 @@
 h1{
     color: #369;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 250%;
-    text-align: center
-
+    font-size: 350%;
+    text-align: center;
+    margin:15px;
+    margin-top: 5px;
 }
 nav{
-  text-align: center
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 1px;
+}
+
+nav>a{
+  background-color: #354F5D;
+  color:#EAF7FF;
+  padding: 3px;
+  border-radius: 4px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+nav>a.selected{
+  background-color: #A1D9F9;
+  color:#5E2606;
+}
+nav>a.selected:hover{
+  color:#354F5D;
+}
+nav>a:hover{
+  background-color: #EAF7FF;
+  color:#354F5D;
+}
+nav>a:active{
+  background-color: rgb(59, 68, 73);
+  color:#BFD0E0;
+}
+.outernavbar{
+  text-align: right;
+}
+.navbar{
+  background-color: #83C4E8;
+  padding: 7px;
+  display: inline-block;
+  border-bottom-left-radius: 6px;
+
+}
+a{
+  text-decoration: none;
 }

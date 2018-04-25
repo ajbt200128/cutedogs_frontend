@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Input } from '@angular/core';
 import { MatChipInputEvent } from '@angular/material';
-import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { ENTER, COMMA, TAB } from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,7 +24,7 @@ export class DogProfileComponent implements OnInit {
   oldDog: Dog;
   imgsValid: boolean = true;
 
-  separatorKeysCodes = [ENTER, COMMA];
+  separatorKeysCodes = [ENTER, COMMA, TAB];
 
   constructor(
     private route: ActivatedRoute,

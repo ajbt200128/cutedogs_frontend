@@ -1,21 +1,35 @@
 <div class="outer">
-  <div *ngIf="edit">
-  <a *ngIf="!ask" href="javascript:void(0)" (click)="prompt()" >delete</a>
-  <span *ngIf="ask"> Are you sure</span>
-  <a *ngIf="ask" href="javascript:void(0)" (click)="deleteImg(true)" >yes</a>
-  <a *ngIf="ask" href="javascript:void(0)" (click)="deleteImg(false)" >no</a>
-</div>
-  <nav><a routerLink="/dog/{{img.dog}}">
-    <img [src]='img.imageLink' /></a>
+  <div class="edit" *ngIf="edit">
+    <a *ngIf="!ask" href="javascript:void(0)" (click)="prompt()">delete</a>
+    <span *ngIf="ask"> Are you sure</span>
+    <a *ngIf="ask" href="javascript:void(0)" (click)="deleteImg(true)">yes</a>
+    <a *ngIf="ask" href="javascript:void(0)" (click)="deleteImg(false)">no</a>
+  </div>
+  <nav>
+    <img [src]='img.imageLink' />
   </nav>
   <mat-form-field *ngIf="edit">
-    <input (input)="keyPress(true)"  matInput [(ngModel)]="img.imageLink"required>
-    <mat-error >Link required</mat-error>
+    <input (input)="keyPress(true)" matInput [(ngModel)]="img.imageLink" required>
+    <mat-error>Link required</mat-error>
   </mat-form-field>
-  <a *ngIf="!edit" href="javascript:void(0)" (click)="like()">&#1154; {{img.likedBy | imagePoints}} </a>
-  <div class="tags">
+  <br>
+  <a *ngIf="!edit" href="javascript:void(0)" (click)="like()" class="like">&#1154; {{img.likedBy | imagePoints}} </a>
+  <br>
+  <br>
+  <div *ngIf="!edit" class="tags">
     <span *ngFor='let tag of img.tags' (click)="tagClick(tag)" class="tag">
       {{tag}}
     </span>
   </div>
+
+  <mat-form-field *ngIf="edit" class="inputfield" >
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let tag of img.tags" [selectable]="true" [removable]="true" (remove)="removeTag(tag)">
+        {{tag}}
+        <mat-icon matChipRemove>&#10007;</mat-icon>
+      </mat-chip>
+      <input placeholder="Add a tag" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+        (matChipInputTokenEnd)="addTag($event)" />
+    </mat-chip-list>
+  </mat-form-field>
 </div>

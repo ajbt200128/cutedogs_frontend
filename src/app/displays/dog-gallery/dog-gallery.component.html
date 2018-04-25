@@ -1,4 +1,6 @@
-<div [ngStyle]="{'grid-template-columns':getWidth(),'display': 'grid','grid-row-gap':'20px','grid-column-gap':'20px','width':getDivWidth()}">
+<div #parent [ngStyle]="{'grid-template-columns':getWidth(),'display': 'grid','grid-row-gap':'20px','grid-column-gap':'20px'}">
   <app-dog-display *ngFor="let dog of dogs" [dog]='dog' [edit]='edit'></app-dog-display>
-  <button *ngIf="edit" mat-mini-fab (click)="addDog()" class="addButton">+</button>
+  <div class="addButton">
+    <button *ngIf="edit" mat-mini-fab (click)="addDog()">+</button>
+  </div>
 </div>

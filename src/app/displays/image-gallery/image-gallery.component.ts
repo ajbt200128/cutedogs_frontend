@@ -3,6 +3,9 @@ import { Image } from 'app/models/image';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Input } from '@angular/core';
 import { Dog } from 'app/models/dog';
+import { ElementRef } from '@angular/core/';
+import { ViewChild } from '@angular/core/';
+
 
 @Component({
   selector: 'app-image-gallery',
@@ -15,6 +18,7 @@ export class ImageGalleryComponent implements OnInit {
   @Output() valid: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Input() dog: Dog;
   @Output() imgLiked: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('parent') parent: ElementRef;
   constructor() {}
 
   ngOnInit() {}
@@ -57,20 +61,15 @@ export class ImageGalleryComponent implements OnInit {
     this.images.push(img);
     this.checkImgs(false);
   }
-  getDivWidth(): string {
-    return (
-      360 *
-        Math.min(this.images.length + 1, Math.floor(window.innerWidth / 300)) +
-      'px'
-    );
-  }
 
   getWidth(): string {
-    const width = Math.min(
-      this.images.length + 1,
-      Math.floor(window.innerWidth / 300)
+    let width = Math.min(
+      this.images.length,
+      Math.floor(this.parent.nativeElement.offsetWidth / 300)
     );
-
+    if (this.edit && width!== 1){
+      width++;
+    }
     return 'repeat( ' + width + ', ' + width + 'fr)';
   }
 }

@@ -1,8 +1,11 @@
-<div>
-  <div *ngIf='!loggedIn'>
-  Please <a routerLink='/login'>log in</a>
-</div>
-<div *ngIf='loggedIn'>
-  <app-user-profile [username]='user' ></app-user-profile>
-</div>
+<div class="outer">
+  <div class="inner">
+    <div *ngIf='!loggedIn'>
+      Please
+      <a routerLink='/login'>log in</a>
+    </div>
+    <div class="profileholder" *ngIf='loggedIn'>
+      <app-user-profile [username]='user'></app-user-profile>
+    </div>
+  </div>
 </div>

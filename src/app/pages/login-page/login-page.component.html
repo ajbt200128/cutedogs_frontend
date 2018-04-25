@@ -3,19 +3,25 @@
   <br>
   <br>
   <div class="inner">
-      <div [hidden]="valid">Wrong username or password</div>
-<form (ngSubmit)="logIn()">
-  <mat-form-field>
-  <input matInput [(ngModel)]="username" type="text" placeholder="Enter your username" required name="username" #name="ngModel">
-</mat-form-field>
-<br>
-<mat-form-field>
-  <input matInput [(ngModel)]="password" type="password" placeholder="Password" required name="password" #pass="ngModel"><br>
-</mat-form-field>
-<br>
-  Remember Me <mat-slide-toggle [(ngModel)] = "remember" name="remember"></mat-slide-toggle><br>
-  <button mat-raised-button>Log In</button>
+    <div [hidden]="valid">Wrong username or password</div>
+    <form (ngSubmit)="logIn()">
+      <mat-form-field>
+        <input matInput [(ngModel)]="username" type="text" placeholder="Enter your username" required name="username" #name="ngModel">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput [(ngModel)]="password" type="password" placeholder="Password" required name="password" #pass="ngModel">
+        <br>
+      </mat-form-field>
+      <br> Remember Me
+      <mat-slide-toggle [(ngModel)]="remember" name="remember"></mat-slide-toggle>
+      <br>
+      <div class="link">
+        <a routerLink="/signup">Sign up</a>
+      </div>
 
-</form>
-</div>
+      <button mat-raised-button>Log In</button>
+
+    </form>
+  </div>
 </div>

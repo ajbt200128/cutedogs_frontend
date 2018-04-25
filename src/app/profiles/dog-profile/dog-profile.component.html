@@ -1,89 +1,96 @@
-<div [style.text-align]="'center'" *ngIf="dog">
-  <form #f="ngForm">
-  <div *ngIf='loggedInUser||new'>
-    <button mat-raised-button *ngIf='!edit' (click)='editMode()'> edit </button>
-    <button type="submit" [disabled]="f.invalid || !imgsValid||dog===oldDog||dog.images.length==0" mat-raised-button *ngIf='edit' (click)="save()">save</button>
-    <button mat-raised-button *ngIf='edit' (click)='cancel()'>cancel</button>
-    <br>
-    <button *ngIf="!edit&&!new" (click)="delete()" mat-raised-button>delete</button>
-  </div>
-  <h3><nav><a routerLink="/user/{{ownerUsername}}">Owner</a></nav></h3>
-    <h1 *ngIf="!edit">{{dog.name}}</h1>
-    <mat-form-field *ngIf="edit">
-        <input matInput required [(ngModel)]="dog.name" [value]="oldDog.name" name="dogName">
-        <mat-error *ngIf="!dog.name" >Name is required</mat-error>
-      </mat-form-field>
-      <br>
-    <img [src]="dog.profilePictureLink" class="profileImg">
-    <br>
-    <mat-form-field *ngIf="edit">
-      <input matInput required name="dogProfileImg" [(ngModel)]="dog.profilePictureLink">
-      <mat-error *ngIf="!dog.profilePictureLink">Profile picture required</mat-error>
-    </mat-form-field>
-    <br>
+<div class="outer">
+  <div class="inner">
+    <div [style.text-align]="'center'" *ngIf="dog">
+      <form #f="ngForm">
+        <div class="actions" *ngIf='loggedInUser||new'>
+          <button mat-raised-button *ngIf='!edit' (click)='editMode()'>Edit</button>
+          <button type="submit" [disabled]="f.invalid || !imgsValid||dog===oldDog||dog.images.length==0" mat-raised-button *ngIf='edit'
+            (click)="save()">save</button>
+          <button class="last" mat-raised-button *ngIf='edit' (click)='cancel()'>Cancel</button>
+          <br>
+          <button id="delete" class="last" *ngIf="!edit&&!new" (click)="delete()" mat-raised-button>Delete</button>
+        </div>
+
+        <h1 *ngIf="!edit">{{dog.name}}</h1>
+        <h3>
+          <nav>
+            <a *ngIf="!edit&&!loggedInUser" routerLink="/user/{{ownerUsername}}">Owner</a>
+          </nav>
+        </h3>
+        <mat-form-field *ngIf="edit">
+          <input matInput required [(ngModel)]="dog.name" [value]="oldDog.name" name="dogName">
+          <mat-error *ngIf="!dog.name">Name is required</mat-error>
+        </mat-form-field>
+        <br *ngIf="edit">
+        <img [src]="dog.profilePictureLink" class="profileImg">
+        <br>
+        <mat-form-field *ngIf="edit">
+          <input matInput required name="dogProfileImg" [(ngModel)]="dog.profilePictureLink">
+          <mat-error *ngIf="!dog.profilePictureLink">Profile picture required</mat-error>
+        </mat-form-field>
+        <br *ngIf="edit">
 
 
-      <h3 *ngIf="!edit">Birthday: {{dog.birthday | age}} | &#1154; {{dog.images|dogPoints}} | {{dog.gender | genderPipe}} | {{dog.breed}}</h3>
-      <div *ngIf="edit">
-        Birthday:
-        <mat-form-field>
-            <input required matInput [(ngModel)]="dog.birthday" name="date" [matDatepicker]="picker" >
+        <h3 *ngIf="!edit">Birthday: {{dog.birthday | age}} | &#1154; {{dog.images|dogPoints}} | {{dog.gender | genderPipe}} | {{dog.breed}}</h3>
+        <div *ngIf="edit">
+          Birthday:
+          <mat-form-field>
+            <input required matInput [(ngModel)]="dog.birthday" name="date" [matDatepicker]="picker">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="!dog.birthday" >Invalid Birthday</mat-error>
-        </mat-form-field><br>
-        Gender:<mat-button-toggle-group [(ngModel)]="dog.gender" name="genderPicker">
+            <mat-error *ngIf="!dog.birthday">Invalid Birthday</mat-error>
+          </mat-form-field>
+          <br> Gender:
+          <mat-button-toggle-group [(ngModel)]="dog.gender" name="genderPicker">
             <mat-button-toggle value="0">Female
-              </mat-button-toggle>
-              <mat-button-toggle value="1">Male
-                </mat-button-toggle>
-        </mat-button-toggle-group><br>
-        Breed: <mat-form-field>
-        <input matInput required [(ngModel)]="dog.breed" name="breed"> <br>
-        <mat-error *ngIf="!dog.breed" >Breed is required</mat-error>
-      </mat-form-field>
-      </div>
-      <div *ngIf="!edit&&dog.biography">
-      <h2>About me</h2>
-      <p>{{dog.biography}}</p>
-      </div>
+            </mat-button-toggle>
+            <mat-button-toggle value="1">Male
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+          <br> Breed:
+          <mat-form-field>
+            <input matInput required [(ngModel)]="dog.breed" name="breed">
+            <br>
+            <mat-error *ngIf="!dog.breed">Breed is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div *ngIf="!edit&&dog.biography">
+          <h2>About me</h2>
+          <p>{{dog.biography}}</p>
+        </div>
 
-      <mat-form-field style="width:400px !important" *ngIf="edit" >
-        Biography
+        <mat-form-field class="inputfield" *ngIf="edit">
+          Biography
           <textarea matInput name="bio" [(ngModel)]="dog.biography"></textarea>
-      </mat-form-field>
-      <br *ngIf="edit">
-      <h3 *ngIf="!edit">Likes: {{dog.dogLikes}}</h3>
+        </mat-form-field>
+        <br *ngIf="edit">
+        <h3 *ngIf="!edit">Likes: {{dog.dogLikes}}</h3>
 
-      <mat-form-field *ngIf="edit" style="width:400px !important;">
-        <mat-chip-list #chipList>
-          <mat-chip *ngFor="let like of dog.dogLikes" [selectable]="true" [removable]="true" (remove)="removeChip(like,true)">
-            {{like}}
-            <mat-icon matChipRemove>&#10007;</mat-icon>
-          </mat-chip>
-          <input placeholder="Add a like"
-           [matChipInputFor]="chipList"
-           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-           [matChipInputAddOnBlur]="true"
-           (matChipInputTokenEnd)="addChip($event,true)" />
-        </mat-chip-list>
-      </mat-form-field>
-      <h3 *ngIf="!edit">Dislikes: {{dog.dogDislikes}}</h3>
-      <br>
-      <mat-form-field *ngIf="edit" style="width:400px !important;">
-        <mat-chip-list #chipList>
-          <mat-chip *ngFor="let dislike of dog.dogDislikes" [selectable]="true" [removable]="true" (remove)="removeChip(dislike,false)">
-            {{dislike}}
-            <mat-icon matChipRemove>&#10007;</mat-icon>
-          </mat-chip>
-          <input placeholder="Add a like"
-           [matChipInputFor]="chipList"
-           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-           [matChipInputAddOnBlur]="true"
-           (matChipInputTokenEnd)="addChip($event,false)" />
-        </mat-chip-list>
-      </mat-form-field>
-    <mat-error *ngIf="dog.images.length==0 && edit">At least one image required</mat-error>
-    <app-image-gallery [dog]="this.dog" (valid)="checkImgs($event)" (imgLiked)="updateImgs()" [images]='dog.images' [edit]="edit"></app-image-gallery>
-  </form>
+        <mat-form-field *ngIf="edit" class="inputfield" >
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let like of dog.dogLikes" [selectable]="true" [removable]="true" (remove)="removeChip(like,true)">
+              {{like}}
+              <mat-icon matChipRemove>&#10007;</mat-icon>
+            </mat-chip>
+            <input placeholder="Add a like" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+              (matChipInputTokenEnd)="addChip($event,true)" />
+          </mat-chip-list>
+        </mat-form-field>
+        <h3 *ngIf="!edit">Dislikes: {{dog.dogDislikes}}</h3>
+        <br>
+        <mat-form-field *ngIf="edit" class="inputfield" >
+          <mat-chip-list #chipList>
+            <mat-chip *ngFor="let dislike of dog.dogDislikes" [selectable]="true" [removable]="true" (remove)="removeChip(dislike,false)">
+              {{dislike}}
+              <mat-icon matChipRemove>&#10007;</mat-icon>
+            </mat-chip>
+            <input placeholder="Add a like" [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="true"
+              (matChipInputTokenEnd)="addChip($event,false)" />
+          </mat-chip-list>
+        </mat-form-field>
+        <mat-error *ngIf="dog.images.length==0 && edit">At least one image required</mat-error>
+        <app-image-gallery [dog]="this.dog" (valid)="checkImgs($event)" (imgLiked)="updateImgs()" [images]='dog.images' [edit]="edit"></app-image-gallery>
+      </form>
+    </div>
+  </div>
 </div>

@@ -1,11 +1,31 @@
 
 div.outer{
-  border: 5px solid black;
+  border-radius: 10px;
+  background-color: #BFD0E0;
   display: inline-block;
   text-align: center;
-  padding: 3px;
+  padding: 7px;
 }
 img{
   width: 260px;
   max-height: 300px;
+  border-radius: 5px;
+}
+.link>nav>a{
+  text-decoration: none;
+  font-size: 1.4em;
+  color: #402F1F;
+}
+.link:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+.edit{
+  text-decoration: none;
+  font-size: 1.1em;
+  color: #402F1F;
+}
+.edit:hover{
+  text-decoration: underline;
+  cursor: pointer;
 }
