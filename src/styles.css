@@ -3,6 +3,9 @@
 
 * {
   font-family: sans-serif;
+  --primary:#a1d9f9;
+  --link:#5E2606;
+  --background: #63ADF2;
 }
 .inputfield{
   width:80% !important;
@@ -26,7 +29,7 @@ div.outer {
   align-items: center;
 }
 div.inner {
-  background-color: #a1d9f9;
+  background-color: var(--primary);
   min-width: 30%;
   max-width: 70%;
   padding: 30px;
@@ -37,7 +40,7 @@ div.inner {
 
 @media screen and (max-width: 420px) {
   div.inner {
-    background-color: #a1d9f9;
+    background-color: var(--primary);
     max-width: 90%;
     min-width: 70%;
     padding: 30px;

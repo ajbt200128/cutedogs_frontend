@@ -9,12 +9,12 @@ tags{
   color: cornflowerblue;
 }
 .like{
-  background-color: #63ADF2;
+  background-color: var(--background);
   padding: 10px;
   border-radius: 40%;
   box-shadow: 1px 1px 4px black;
   text-decoration: none;
-  color: #5E2606;
+  color: var(--link);
 }
 .like:hover{
   background-color: #304D6D;

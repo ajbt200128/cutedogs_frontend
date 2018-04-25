@@ -5,12 +5,12 @@ div.outer{
 div.inner{
   text-align: center;
   display: inline-block;
-  
+
 }
 a{
   text-decoration: none;
 
-  color: #5E2606;
+  color: var(--link);
 }
 a:hover{
   text-decoration: underline;
