@@ -64,11 +64,9 @@ export class SignupComponent implements OnInit {
             }
           },
           (err: DataResponse<any>) => {
-            console.log('reeee');
             this.formGroup.controls['usernameValidator'].setErrors({
               usernameTaken: true
             });
-            console.log(this.getUsernameError());
             this.valid = false;
           }
         );
@@ -91,9 +89,6 @@ export class SignupComponent implements OnInit {
     }
   }
   getPasswordError(): string {
-    console.log(
-      JSON.stringify(this.formGroup.controls['passwordValidator'].errors)
-    );
     if (this.formGroup.controls['passwordValidator'].errors) {
       if (this.formGroup.controls['passwordValidator'].errors['pattern']) {
         return 'Password must have upper and lower case letters, and numbers';

@@ -18,7 +18,6 @@ export class ApiHandlerService {
   getUser(uuid: UUID): Observable<DataResponse<User>> {
     let path: string =
       Paths.URL + Paths.GET_USER.replace(':uuid', uuid.toString());
-    console.log(path);
     return this.http.get<DataResponse<User>>(path);
   }
   getUserByUsername(username: string): Observable<DataResponse<User>> {
@@ -36,7 +35,6 @@ export class ApiHandlerService {
   getDogByOwner(uuid: UUID): Observable<DataResponse<Dog[]>> {
     let path: string =
       Paths.URL + Paths.GET_DOGS_BY_OWNER.replace(':uuid', uuid.toString());
-    console.log(path);
     return this.http.get<DataResponse<Dog[]>>(path);
   }
   login(username: string, password: string): Observable<Response> {
@@ -71,7 +69,6 @@ export class ApiHandlerService {
     let eaders = new HttpHeaders({
       Authorization: 'Bearer ' + LoginHelper.getToken()
     });
-    console.log(JSON.stringify(dog));
 
     return this.http.put<Response>(path, JSON.stringify(dog), {
       headers: eaders,
@@ -86,7 +83,6 @@ export class ApiHandlerService {
     let eaders = new HttpHeaders({
       Authorization: 'Bearer ' + LoginHelper.getToken()
     });
-    console.log(JSON.stringify(dog));
 
     return this.http.delete<Response>(path, {
       headers: eaders,
@@ -101,7 +97,6 @@ export class ApiHandlerService {
     let eaders = new HttpHeaders({
       Authorization: 'Bearer ' + LoginHelper.getToken()
     });
-    console.log(JSON.stringify(dog));
 
     return this.http.post<Response>(path, JSON.stringify(dog), {
       headers: eaders,
@@ -113,7 +108,6 @@ export class ApiHandlerService {
     let eaders = new HttpHeaders({
       Authorization: 'Bearer ' + LoginHelper.getToken()
     });
-    console.log(image + ' ' + like);
     return this.http.post<Response>(path, like ? 1 : 0, {
       headers: eaders,
       withCredentials: true

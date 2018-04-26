@@ -18,7 +18,6 @@ export class MyDogsComponent implements OnInit {
   loginHandler(loggedIn: boolean) {
     if (loggedIn) {
       this.user = LoginHelper.getProfile().username;
-      console.log(this.user);
     }
     this.loggedIn = loggedIn;
   }

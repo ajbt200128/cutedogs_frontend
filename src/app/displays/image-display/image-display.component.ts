@@ -53,7 +53,6 @@ export class ImageDisplayComponent implements OnInit {
         .subscribe(res => this.liked.emit());
     } else {
       let dialog = this.dialog.open(LoginPopupComponent);
-      dialog.afterOpen().subscribe(() => console.log('open'));
     }
   }
   tagClick(tag: string) {

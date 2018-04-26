@@ -31,7 +31,6 @@ export class OtherDogsComponent implements OnInit {
     if (scrollPosition > componentPosition) {
       this.loadNum += Math.floor(window.innerWidth / 300);
       if (this.tag) {
-        console.log(this.tag);
         this.api
           .getAllDogsByTag(this.loadNum + Math.ceil(this.loadNum / 2), this.tag)
           .subscribe(res => (this.dogs = res.data));
@@ -47,7 +46,6 @@ export class OtherDogsComponent implements OnInit {
     this.loadNum =
       Math.floor(window.innerWidth / 300) *
       Math.floor(window.innerHeight / 350);
-    console.log(this.route.snapshot.params['tag']);
     if (this.route.snapshot.params['tag']) {
       this.tag = this.route.snapshot.params['tag'];
       this.api

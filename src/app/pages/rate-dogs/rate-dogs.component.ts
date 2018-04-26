@@ -43,7 +43,6 @@ export class RateDogsComponent implements OnInit {
         });
     } else {
       let dialog = this.dialog.open(LoginPopupComponent);
-      dialog.afterOpen().subscribe(() => console.log('open'));
     }
   }
 
@@ -52,7 +51,6 @@ export class RateDogsComponent implements OnInit {
     this.currImg = Math.floor(
       Math.random() * this.dogs[this.currDog].images.length
     );
-    console.log(this.dogs[this.currDog].images[this.currImg]);
     if (this.currDog == this.dogs.length - 1) {
       this.api
         .getDogsRandom(5)

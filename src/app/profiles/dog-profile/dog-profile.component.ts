@@ -78,7 +78,6 @@ export class DogProfileComponent implements OnInit {
   }
 
   editMode() {
-    console.log(JSON.stringify(this.dog.images));
     this.edit = true;
 
     this.oldDog = { ...this.dog };
