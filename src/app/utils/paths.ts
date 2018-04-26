@@ -1,5 +1,5 @@
 export enum Paths {
-  URL = 'http://0.0.0.0:8080',
+  URL = 'http://cutedogs:9090',
   GET_DOGS = '/api/dogs',
   GET_DOG = '/api/dog/:uuid',
   GET_DOGS_RANDOM = '/api/dogs/random',
