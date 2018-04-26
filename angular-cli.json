@@ -48,7 +48,10 @@
       "config": "./karma.conf.js"
     }
   },
-  "defaults": {
+    "defaults": {
+	"serve":{
+	    "port":80
+	},
     "styleExt": "css",
     "prefixInterfaces": false,
     "inline": {
